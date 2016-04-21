@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTheme" parent="Base.MyTheme">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <!-- Can even change system colors if we want to -->
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+</resources>
