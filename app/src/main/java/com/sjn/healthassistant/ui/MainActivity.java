@@ -10,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.ui.adapter.MainPagerAdapter;
+import com.sjn.healthassistant.ui.fragment.DieaseFragment;
+import com.sjn.healthassistant.ui.fragment.DrugFragment;
+import com.sjn.healthassistant.ui.fragment.HealthFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         setSupportActionBar(toolbar);
         MainPagerAdapter mainPagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        HealthFragment healthFragment= new HealthFragment();
+        DrugFragment drugFragment = new DrugFragment();
+        DieaseFragment dieaseFragment = new DieaseFragment();
+        mainPagerAdapter.addFragment(healthFragment,"健康");
+        mainPagerAdapter.addFragment(drugFragment,"用药");
+        mainPagerAdapter.addFragment(dieaseFragment,"病状");
+
         viewpager.setAdapter(mainPagerAdapter);
         tabs.setupWithViewPager(viewpager);
     }
