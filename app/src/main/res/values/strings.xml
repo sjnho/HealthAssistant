@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">健康助手</string>
+    <string name="transition_image">trasitionImage</string>
 </resources>

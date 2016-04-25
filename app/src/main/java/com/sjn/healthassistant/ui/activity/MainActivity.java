@@ -1,4 +1,4 @@
-package com.sjn.healthassistant.ui;
+package com.sjn.healthassistant.ui.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
