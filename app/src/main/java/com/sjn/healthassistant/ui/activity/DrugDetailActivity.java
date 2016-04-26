@@ -14,20 +14,22 @@ import butterknife.ButterKnife;
 
 public class DrugDetailActivity extends AppCompatActivity {
 
+
     @Bind(R.id.image)
-    ImageView sImage;
+    ImageView image;
     @Bind(R.id.toolbar)
-    Toolbar sToolbar;
+    Toolbar toolbar;
     @Bind(R.id.collapsing_toolbar)
-    CollapsingToolbarLayout sCollapsingToolbar;
+    CollapsingToolbarLayout collapsingToolbar;
     @Bind(R.id.appbar)
-    AppBarLayout sAppbar;
+    AppBarLayout appbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drug_detail);
         ButterKnife.bind(this);
-        sCollapsingToolbar.setTitle("");
+        collapsingToolbar.setTitle("");
+
     }
 }
