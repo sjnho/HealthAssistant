@@ -20,7 +20,7 @@ public class DrugFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View fragment = inflater.inflate(R.layout.fragment_medication,container,false);
+        View fragment = inflater.inflate(R.layout.fragment_drug,container,false);
         return fragment;
     }
 
