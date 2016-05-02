@@ -1,5 +1,6 @@
-package com.sjn.healthassistant.network;
+package com.sjn.healthassistant.common;
 
+import com.sjn.healthassistant.common.DataWrapper;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.pojo.HealthInfo;
 
@@ -16,7 +17,7 @@ public interface SjnService {
     /**
      * 药品
      */
-    @GET("/drug/show")
+    @GET("drug/show")
     Observable<Drug> drugDetail(@Query("id")int id);//获得药品详情
 
 
@@ -25,8 +26,10 @@ public interface SjnService {
     /**
      * 健康信息
      */
-    @GET("/info/news")
+    @GET("info/news")
     Observable<DataWrapper<List<HealthInfo>>> newInfos(@Query("id") int id);//获取最新的健康资讯
+
+
     /**
      * 疾病
      */

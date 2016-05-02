@@ -15,7 +15,7 @@ public class HealthInfo {
     private int count ;//访问次数
     private int fcount;//收藏数
     private int rcount;//评论读数
-    private Timestamp time;
+    private long time;
 
     public String getTitle() {
         return title;
@@ -89,11 +89,11 @@ public class HealthInfo {
         this.rcount = rcount;
     }
 
-    public Timestamp getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(long time) {
         this.time = time;
     }
 }
