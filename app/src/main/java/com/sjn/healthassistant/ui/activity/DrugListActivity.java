@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.sjn.healthassistant.R;
+import com.sjn.healthassistant.model.DrugModel;
 
 public class DrugListActivity extends AppCompatActivity {
 

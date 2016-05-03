@@ -1,4 +1,4 @@
-package com.sjn.healthassistant.network;
+package com.sjn.healthassistant.common;
 
 /**
  * Created by sjn on 16/4/19.

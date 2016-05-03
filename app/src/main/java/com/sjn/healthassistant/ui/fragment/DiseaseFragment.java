@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 /**
  * Created by sjn on 16/4/21.
  */
-public class DieaseFragment extends Fragment {
+public class DiseaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
