@@ -2,7 +2,8 @@ package com.sjn.healthassistant.model;
 
 import com.sjn.healthassistant.common.DataWrapper;
 import com.sjn.healthassistant.common.SjnService;
-import com.sjn.healthassistant.pojo.HealthInfo;
+import com.sjn.healthassistant.pojo.HealthLore;
+import com.sjn.healthassistant.pojo.HealthNews;
 
 import java.util.List;
 
@@ -17,18 +18,22 @@ public class HealthModel extends BaseModel {
         super(service);
     }
 
-    public Observable<List<HealthInfo>> getHealthNews() {
-        return mApi.newInfos(0).concatMap(new Func1<DataWrapper<List<HealthInfo>>, Observable<DataWrapper<List<HealthInfo>>>>() {
+    public Observable<List<HealthNews>> getHealthNews() {
+        return mApi.newInfos(0).concatMap(new Func1<DataWrapper<List<HealthNews>>, Observable<DataWrapper<List<HealthNews>>>>() {
             @Override
-            public Observable<DataWrapper<List<HealthInfo>>> call(DataWrapper<List<HealthInfo>> listDataWrapper) {
+            public Observable<DataWrapper<List<HealthNews>>> call(DataWrapper<List<HealthNews>> listDataWrapper) {
                 return mApi.newInfos(listDataWrapper.getTotal());
             }
-        }).concatMap(new Func1<DataWrapper<List<HealthInfo>>, Observable<? extends List<HealthInfo>>>() {
+        }).concatMap(new Func1<DataWrapper<List<HealthNews>>, Observable<? extends List<HealthNews>>>() {
             @Override
-            public Observable<? extends List<HealthInfo>> call(DataWrapper<List<HealthInfo>> listDataWrapper) {
+            public Observable<? extends List<HealthNews>> call(DataWrapper<List<HealthNews>> listDataWrapper) {
                 return transData(listDataWrapper);
             }
         });
 
     }
+    public Observable<DataWrapper<List<HealthLore>>> getHealthLore(int id,int page){
+        return mApi.getHealthLore(id,page,10);
+    }
+
 }

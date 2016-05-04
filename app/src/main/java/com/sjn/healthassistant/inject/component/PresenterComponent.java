@@ -1,9 +1,10 @@
 package com.sjn.healthassistant.inject.component;
 
 
-
 import com.sjn.healthassistant.inject.module.PresenterModule;
 import com.sjn.healthassistant.inject.scope.PerPresenter;
+import com.sjn.healthassistant.pojo.HealthClassify;
+import com.sjn.healthassistant.presenter.HealthClassifyPresenter;
 import com.sjn.healthassistant.presenter.HealthPresenter;
 
 import dagger.Component;
@@ -14,5 +15,7 @@ import dagger.Component;
 @PerPresenter
 @Component(dependencies = AppComponent.class, modules = PresenterModule.class)
 public interface PresenterComponent {
-        void inject(HealthPresenter healthPresenter);
+    void inject(HealthPresenter healthPresenter);
+
+    void inject(HealthClassifyPresenter healthClassifyPresenter);
 }

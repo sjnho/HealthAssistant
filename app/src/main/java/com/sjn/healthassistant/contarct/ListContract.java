@@ -7,7 +7,6 @@ import java.util.List;
  */
 public interface ListContract {
     interface View<T> {
-        void setPresenter(Presenter presenter);
 
         void onPullDown(List<T> data);
 

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 /**
  * Created by sjn on 16/4/19.
  */
-public class HealthInfo {
+public class HealthNews {
     private String title;//资讯标题
     private int infoclass;//分类
     private String img;//图片

@@ -23,13 +23,16 @@
         <activity
             android:name=".ui.activity.NewsActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.activity.DrugDetailActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activity.DrugListActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.DrugClassifyListActivity">
+        </activity>
+        <activity android:name=".ui.activity.HealthClassifyListActivity">
+        </activity>
     </application>
 
 </manifest>

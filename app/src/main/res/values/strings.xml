@@ -2,4 +2,5 @@
     <string name="app_name">健康助手</string>
     <string name="transition_image">trasitionImage</string>
     <string name="health_classify">健康信息分类</string>
+    <string name="select_page">选择页码</string>
 </resources>

@@ -1,10 +1,8 @@
 package com.sjn.healthassistant.presenter;
 
-import android.support.annotation.NonNull;
-
 import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.model.HealthModel;
-import com.sjn.healthassistant.pojo.HealthInfo;
+import com.sjn.healthassistant.pojo.HealthNews;
 
 import java.util.List;
 
@@ -15,36 +13,33 @@ import rx.functions.Action1;
 /**
  * Created by sjn on 16/5/2.
  */
-public class HealthPresenter extends BasePresenter implements ListContract.Presenter {
+public class HealthPresenter extends BasePresenter<ListContract.View<HealthNews>> implements ListContract.Presenter {
 
-    private ListContract.View<HealthInfo> mView;
 
     @Inject
     HealthModel healthModel;
 
-    public HealthPresenter(@NonNull ListContract.View view) {
+    public HealthPresenter() {
         super();
         initPresenterComponent().inject(this);
-        mView = view;
-        mView.setPresenter(this);
     }
 
     @Override
     public void pullDown() {
         addSubscription(
-                healthModel.getHealthNews()
-                        .compose(this.<List<HealthInfo>>applySchedulers())
-                        .subscribe(new Action1<List<HealthInfo>>() {
-                            @Override
-                            public void call(List<HealthInfo> healthInfos) {
-                                mView.onPullDown(healthInfos);
-                            }
-                        }, new Action1<Throwable>() {
-                            @Override
-                            public void call(Throwable throwable) {
-                                throwable.printStackTrace();
-                            }
-                        })
+            healthModel.getHealthNews()
+                .compose(this.<List<HealthNews>>applySchedulers())
+                .subscribe(new Action1<List<HealthNews>>() {
+                    @Override
+                    public void call(List<HealthNews> healthInfos) {
+                        mView.onPullDown(healthInfos);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                })
 
         );
     }

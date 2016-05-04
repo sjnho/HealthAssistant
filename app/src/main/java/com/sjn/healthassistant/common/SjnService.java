@@ -1,8 +1,8 @@
 package com.sjn.healthassistant.common;
 
-import com.sjn.healthassistant.common.DataWrapper;
 import com.sjn.healthassistant.pojo.Drug;
-import com.sjn.healthassistant.pojo.HealthInfo;
+import com.sjn.healthassistant.pojo.HealthLore;
+import com.sjn.healthassistant.pojo.HealthNews;
 
 import java.util.List;
 
@@ -27,8 +27,10 @@ public interface SjnService {
      * 健康信息
      */
     @GET("info/news")
-    Observable<DataWrapper<List<HealthInfo>>> newInfos(@Query("id") int id);//获取最新的健康资讯
+    Observable<DataWrapper<List<HealthNews>>> newInfos(@Query("id") int id);//获取最新的健康资讯
 
+    @GET("lore/list")
+    Observable<DataWrapper<List<HealthLore>>> getHealthLore(@Query("id")int id,@Query("page")int page,@Query("rows")int rows);//获取健康分类知识
 
     /**
      * 疾病

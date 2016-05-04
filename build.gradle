@@ -16,6 +16,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        flatDir {
+            dirs 'libs'
+        }
         maven {
             url  'http://dl.bintray.com/gigamole/maven/'
         }

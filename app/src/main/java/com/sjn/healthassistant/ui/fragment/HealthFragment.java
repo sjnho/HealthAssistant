@@ -12,35 +12,41 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.jakewharton.rxbinding.view.RxView;
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.pojo.HealthClassify;
-import com.sjn.healthassistant.pojo.HealthInfo;
+import com.sjn.healthassistant.pojo.HealthNews;
 import com.sjn.healthassistant.presenter.HealthPresenter;
+import com.sjn.healthassistant.ui.activity.HealthClassifyListActivity;
 import com.sjn.healthassistant.ui.activity.NewsActivity;
 import com.sjn.healthassistant.util.ImageLoadUtil;
 import com.sjn.healthassistant.util.LogUtil;
+import com.sjn.healthassistant.util.RealmGson;
 import com.sjn.healthassistant.widget.NewsViewFlipper;
 import com.sjn.healthassistant.widget.WaitDialog;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmQuery;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 
 /**
  * Created by sjn on 16/4/21.
  */
-public class HealthFragment extends Fragment implements ListContract.View<HealthInfo> {
+public class HealthFragment extends Fragment implements ListContract.View<HealthNews> {
     @Bind(R.id.flipper)
     NewsViewFlipper mFlipper;
     @Bind(R.id.container)
     LinearLayout mContainer;
-    private ListContract.Presenter mPresenter;
-    private List<HealthInfo> mHealthInfos;
+    private HealthPresenter mPresenter;
+    private List<HealthNews> mHealthInfos;
     private WaitDialog waitDialog;
 
     @Override
@@ -61,19 +67,24 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
         super.onViewCreated(view, savedInstanceState);
         Realm realm = Realm.getDefaultInstance();
         RealmQuery<HealthClassify> query = realm.where(HealthClassify.class);
-        for (final HealthClassify healthClassify : query.findAll()) {
+        for (HealthClassify healthClassify : query.findAll()) {
             View tabView = View.inflate(getContext(), R.layout.tv_tab, null);
+            tabView.setTag(healthClassify);
             TextView textView = (TextView) tabView.findViewById(R.id.classify_name);
             textView.setText(healthClassify.getTitle());
             tabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LogUtil.d(healthClassify.getTitle());
+                    LogUtil.d("click");
+                    Intent intent = new Intent(getActivity(), HealthClassifyListActivity.class);
+                    intent.putExtra(Constants.EXTRA_HEALTH_CLASSIFY, RealmGson.getGson().toJson(v.getTag()));
+                    startActivity(intent);
                 }
             });
             mContainer.addView(tabView);
         }
-        mPresenter = new HealthPresenter(this);
+        mPresenter = new HealthPresenter();
+        mPresenter.bindView(this);
         mPresenter.pullDown();
         waitDialog = new WaitDialog();
         waitDialog.show(getFragmentManager(), "wait");
@@ -85,15 +96,11 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
         ButterKnife.unbind(this);
     }
 
-    @Override
-    public void setPresenter(ListContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
 
     @Override
-    public void onPullDown(List<HealthInfo> data) {
+    public void onPullDown(List<HealthNews> data) {
         mHealthInfos = data;
-        for (final HealthInfo hi : data) {
+        for (final HealthNews hi : data) {
             ImageView imageView = new ImageView(getContext());
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             ImageLoadUtil.loadImageCacheDisk(Constants.IMAGE + hi.getImg(), imageView);
@@ -111,7 +118,7 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
     }
 
     @Override
-    public void onPullUp(List<HealthInfo> data) {
+    public void onPullUp(List<HealthNews> data) {
 
     }
 
@@ -120,5 +127,9 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
 
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.unsubscribe();
+    }
 }

@@ -14,7 +14,8 @@ import rx.subscriptions.CompositeSubscription;
 /**
  * Created by sjn on 16/5/1.
  */
-public class BasePresenter {
+public class BasePresenter<K> {
+    K mView;
     private CompositeSubscription mSubscriptions;
 
     public BasePresenter() {
@@ -29,6 +30,7 @@ public class BasePresenter {
             }
         };
     }
+
     /**
      * 添加一个订阅者
      *
@@ -44,8 +46,12 @@ public class BasePresenter {
 
     protected PresenterComponent initPresenterComponent() {
         return DaggerPresenterComponent
-                .builder()
-                .appComponent(SjnApplication.getAppComponent())
-                .build();
+            .builder()
+            .appComponent(SjnApplication.getAppComponent())
+            .build();
+    }
+
+    public void bindView(K view) {
+        mView = view;
     }
 }

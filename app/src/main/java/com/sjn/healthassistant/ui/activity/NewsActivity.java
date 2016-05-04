@@ -12,7 +12,7 @@ import com.r0adkll.slidr.Slidr;
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.common.UrlImageGetter;
-import com.sjn.healthassistant.pojo.HealthInfo;
+import com.sjn.healthassistant.pojo.HealthNews;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -46,12 +46,13 @@ public class NewsActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        showNews(new Gson().fromJson(getIntent().getStringExtra(Constants.EXTRA_HEALTH_INFO), HealthInfo.class));
+        parseIntent();
     }
 
-    private void showNews(HealthInfo healthInfo) {
+    private void parseIntent() {
+        HealthNews healthInfo = new Gson().fromJson(getIntent().getStringExtra(Constants.EXTRA_HEALTH_INFO), HealthNews.class);
         title.setText(healthInfo.getTitle());
-        content.setText(Html.fromHtml(healthInfo.getMessage()
-                , new UrlImageGetter(content), null));
+        content.setText(Html.fromHtml(healthInfo.getMessage(), new UrlImageGetter(content), null));
     }
+
 }
