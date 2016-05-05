@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.jakewharton.rxbinding.view.RxView;
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.contarct.ListContract;
@@ -22,20 +21,16 @@ import com.sjn.healthassistant.presenter.HealthPresenter;
 import com.sjn.healthassistant.ui.activity.HealthClassifyListActivity;
 import com.sjn.healthassistant.ui.activity.NewsActivity;
 import com.sjn.healthassistant.util.ImageLoadUtil;
-import com.sjn.healthassistant.util.LogUtil;
 import com.sjn.healthassistant.util.RealmGson;
 import com.sjn.healthassistant.widget.NewsViewFlipper;
 import com.sjn.healthassistant.widget.WaitDialog;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 /**
  * Created by sjn on 16/4/21.
@@ -75,7 +70,6 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
             tabView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LogUtil.d("click");
                     Intent intent = new Intent(getActivity(), HealthClassifyListActivity.class);
                     intent.putExtra(Constants.EXTRA_HEALTH_CLASSIFY, RealmGson.getGson().toJson(v.getTag()));
                     startActivity(intent);
