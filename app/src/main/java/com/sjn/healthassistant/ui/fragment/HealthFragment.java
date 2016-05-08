@@ -25,6 +25,7 @@ import com.sjn.healthassistant.util.RealmGson;
 import com.sjn.healthassistant.widget.NewsViewFlipper;
 import com.sjn.healthassistant.widget.WaitDialog;
 
+
 import java.util.List;
 
 import butterknife.Bind;

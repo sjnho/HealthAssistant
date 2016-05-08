@@ -12,6 +12,7 @@ import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.pojo.HealthLore;
 import com.sjn.healthassistant.util.ImageLoadUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -23,8 +24,16 @@ import butterknife.ButterKnife;
 public class HealthLoreAdapter extends RecyclerView.Adapter<HealthLoreAdapter.ViewHolder> {
 
 
+    public HealthLoreAdapter() {
+        mData = new ArrayList<>();
+    }
+
     public List<HealthLore> getData() {
         return mData;
+    }
+
+    public void setData(List<HealthLore> data) {
+        mData = data;
     }
 
     private List<HealthLore> mData;

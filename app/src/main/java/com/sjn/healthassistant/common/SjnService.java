@@ -18,9 +18,10 @@ public interface SjnService {
      * 药品
      */
     @GET("drug/show")
-    Observable<Drug> drugDetail(@Query("id")int id);//获得药品详情
+    Observable<Drug> drugDetail(@Query("id") int id);//获得药品详情
 
-
+    @GET("search")
+    Observable<DataWrapper<List<Drug>>> search(@Query("name") String name, @Query("keyword") String keyword, @Query("page") int page);
 
 
     /**
@@ -30,7 +31,7 @@ public interface SjnService {
     Observable<DataWrapper<List<HealthNews>>> newInfos(@Query("id") int id);//获取最新的健康资讯
 
     @GET("lore/list")
-    Observable<DataWrapper<List<HealthLore>>> getHealthLore(@Query("id")int id,@Query("page")int page,@Query("rows")int rows);//获取健康分类知识
+    Observable<DataWrapper<List<HealthLore>>> getHealthLore(@Query("id") int id, @Query("page") int page, @Query("rows") int rows);//获取健康分类知识
 
     /**
      * 疾病

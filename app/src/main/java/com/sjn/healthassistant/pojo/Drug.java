@@ -1,20 +1,21 @@
 package com.sjn.healthassistant.pojo;
 
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by sjn on 16/4/26.
  */
-public class Drug {
+public class Drug extends RealmObject {
+    @PrimaryKey
+    private int id;
     private String name;//名称
     private String img;//图片
     private String message;//内容
-    private int count;//访问次数
-    private int fcount;//收藏数
-    private int rcount;//评论读数
     private String keywords;
     private String description;
-    private float price;//价格
     private String tag; //标签
-    private String type 	;//类型
+    private String type;//类型
 
     public String getName() {
         return name;
@@ -40,29 +41,6 @@ public class Drug {
         this.message = message;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getFcount() {
-        return fcount;
-    }
-
-    public void setFcount(int fcount) {
-        this.fcount = fcount;
-    }
-
-    public int getRcount() {
-        return rcount;
-    }
-
-    public void setRcount(int rcount) {
-        this.rcount = rcount;
-    }
 
     public String getKeywords() {
         return keywords;
@@ -80,13 +58,6 @@ public class Drug {
         this.description = description;
     }
 
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
 
     public String getTag() {
         return tag;
@@ -102,5 +73,13 @@ public class Drug {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

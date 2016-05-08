@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".ui.activity.HealthClassifyListActivity">
         </activity>
+        <activity android:name=".ui.activity.DrugSearchActivity">
+        </activity>
     </application>
 
 </manifest>

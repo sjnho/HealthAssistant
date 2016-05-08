@@ -1,9 +1,10 @@
-package com.sjn.healthassistant.pojo;
+package com.sjn.healthassistant.pojo.serializer;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
+import com.sjn.healthassistant.pojo.HealthClassify;
 
 import java.lang.reflect.Type;
 

@@ -4,9 +4,10 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sjn.healthassistant.pojo.HealthClassify;
-import com.sjn.healthassistant.pojo.HealthClassifySerializer;
+import com.sjn.healthassistant.pojo.serializer.DrugSerializer;
+import com.sjn.healthassistant.pojo.serializer.HealthClassifySerializer;
 
+import io.realm.DrugRealmProxy;
 import io.realm.HealthClassifyRealmProxy;
 import io.realm.RealmObject;
 
@@ -29,6 +30,7 @@ public class RealmGson {
                     }
                 })
                 .registerTypeAdapter(HealthClassifyRealmProxy.class, new HealthClassifySerializer())
+                .registerTypeAdapter(DrugRealmProxy.class,new DrugSerializer())
                 .create();
         }
         return mGson;

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <ImageView
+        android:id="@+id/drug_image"
+        android:layout_width="88dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:scaleType="center"
+        android:transitionName="@string/transition_image"
+        />
+
+    <TextView
+        android:id="@+id/drug_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_toEndOf="@id/drug_image"
+        android:maxLines="1"
+        android:textColor="@color/primary_text"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/drug_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/drug_name"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@id/drug_image"
+        android:ellipsize="end"
+        android:maxLines="2"
+        tools:text="adfskghkajdshkjfladshjkladhskladhfsjkahfdsjklhadskjlhadjfskhhjdfkashjklfasdh"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider_height"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@id/drug_image"
+        android:background="@color/divider"/>
+</RelativeLayout>
