@@ -30,6 +30,22 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.ViewHo
         mDrugs = new ArrayList<>();
     }
 
+    public void appendData(List<Drug> data) {
+        if (mDrugs.isEmpty() && !data.isEmpty() && mDrugs.get(mDrugs.size() - 1).getId() == data.get(data.size() - 1).getId()) {
+            return;
+        }
+        mDrugs.addAll(data);
+    }
+
+    public void addData(List<Drug> data) {
+        if (mDrugs.isEmpty() && !data.isEmpty() && mDrugs.get(0).getId() == data.get(0).getId()) {
+            return;
+        }
+        mDrugs.addAll(0, data);
+
+    }
+
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_drug, parent, false);

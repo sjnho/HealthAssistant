@@ -6,6 +6,7 @@ import com.sjn.healthassistant.pojo.Drug;
 
 import java.util.List;
 
+import io.realm.Realm;
 import rx.Observable;
 import rx.functions.Func1;
 
@@ -22,6 +23,7 @@ public class DrugModel extends BaseModel {
         return mApi.search("drug", keyword, page).concatMap(new Func1<DataWrapper<List<Drug>>, Observable<? extends List<Drug>>>() {
             @Override
             public Observable<? extends List<Drug>> call(DataWrapper<List<Drug>> listDataWrapper) {
+                Realm.getDefaultInstance().copyToRealmOrUpdate(listDataWrapper.getTngou());
                 return transData(listDataWrapper);
             }
         });

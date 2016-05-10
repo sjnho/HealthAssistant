@@ -40,7 +40,7 @@ public class BasePresenter<K> {
         mSubscriptions.add(sub);
     }
 
-    public void unsubscribe() {
+    public void destroy() {
         mSubscriptions.clear();
     }
 

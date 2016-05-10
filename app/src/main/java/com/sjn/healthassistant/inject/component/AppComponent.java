@@ -9,6 +9,7 @@ import com.sjn.healthassistant.common.SjnService;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import io.realm.Realm;
 
 /**
  * Created by Yi on 15/12/28.

@@ -112,7 +112,7 @@ public class DrugSearchActivity extends AppCompatActivity implements ListContrac
             public void onItemClick(RecyclerView parent, View view, int position, long id) {
                 Intent intent = new Intent(DrugSearchActivity.this, DrugDetailActivity.class);
                 ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(DrugSearchActivity.this, view.findViewById(R.id.drug_image), transition);
-                intent.putExtra(Constants.EXTRA_DRUG, RealmGson.getGson().toJson(mAdapter.getDrugs().get(position)));
+                intent.putExtra(Constants.EXTRA_DRUG_ID, mAdapter.getDrugs().get(position).getId());
                 startActivity(intent, options.toBundle());
             }
         });
@@ -121,6 +121,7 @@ public class DrugSearchActivity extends AppCompatActivity implements ListContrac
 
     @Override
     public void onPullDown(List<Drug> data) {
+
         mAdapter.getDrugs().addAll(0, data);
         mAdapter.notifyDataSetChanged();
         if (data.size() < 1) {
@@ -146,5 +147,11 @@ public class DrugSearchActivity extends AppCompatActivity implements ListContrac
     @Override
     public void stopLoading() {
         mWaitDialog.dismiss();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.destroy();
     }
 }

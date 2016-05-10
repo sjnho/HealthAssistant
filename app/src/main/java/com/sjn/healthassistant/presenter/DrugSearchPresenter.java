@@ -4,11 +4,13 @@ import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.model.DrugModel;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.ui.activity.DrugSearchActivity;
+import com.sjn.healthassistant.util.LogUtil;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import io.realm.Realm;
 import rx.functions.Action1;
 
 /**
@@ -71,7 +73,15 @@ public class DrugSearchPresenter extends BasePresenter<DrugSearchActivity> imple
         );
     }
 
+
+
+
     public void nextPage() {
         mCurrentPage++;
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
     }
 }

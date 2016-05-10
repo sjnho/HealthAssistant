@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.realm.Realm;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -63,6 +64,7 @@ public class AppModule {
     SharedPreferences provideSharedPreferences(SjnApplication mApp) {
         return mApp.getSharedPreferences(mApp.getPackageName(), Context.MODE_PRIVATE);
     }
+
 
 }
 

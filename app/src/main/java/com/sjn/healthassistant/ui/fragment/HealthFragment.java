@@ -125,6 +125,6 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.unsubscribe();
+        mPresenter.destroy();
     }
 }
