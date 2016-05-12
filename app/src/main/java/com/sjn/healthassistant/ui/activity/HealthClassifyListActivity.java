@@ -5,20 +5,15 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
 import com.cjj.OnLoadMoreListener;
 import com.cjj.RecyclerViewWithFooter;
-import com.google.gson.Gson;
 import com.r0adkll.slidr.Slidr;
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
@@ -34,7 +29,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HealthClassifyListActivity extends AppCompatActivity implements ListContract.View<HealthLore> {
+public class HealthClassifyListActivity extends BaseActivity implements ListContract.View<HealthLore> {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -98,19 +93,12 @@ public class HealthClassifyListActivity extends AppCompatActivity implements Lis
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mHealthLoreAdapter);
         Slidr.attach(this);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
         mSwipeRefreshLayout.setRefreshing(true);
         mRecyclerView.setEnd();
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
+                mPresenter.nextPage();
                 mPresenter.pullUp();
             }
         });
@@ -125,7 +113,7 @@ public class HealthClassifyListActivity extends AppCompatActivity implements Lis
 
     private void parseIntent() {
         HealthClassify healthClassify = RealmGson.getGson().fromJson(getIntent().getStringExtra(Constants.EXTRA_HEALTH_CLASSIFY), HealthClassify.class);
-        mToolbar.setTitle(healthClassify.getTitle());
+        setUpToolbar(healthClassify.getTitle());
         mPresenter = new HealthClassifyPresenter();
         mPresenter.bindView(this);
         mPresenter.setHealthClassify(healthClassify);
@@ -151,7 +139,6 @@ public class HealthClassifyListActivity extends AppCompatActivity implements Lis
     @Override
     public void onPullUp(List<HealthLore> data) {
         if (mHealthLoreAdapter.getData().size() != 0 && mHealthLoreAdapter.getData().get(0).getId() == data.get(0).getId()) {
-            mRecyclerView.setEnd();
             Toast.makeText(HealthClassifyListActivity.this, "没有更多数据了!", Toast.LENGTH_SHORT).show();
         } else {
             mHealthLoreAdapter.getData().addAll(data);

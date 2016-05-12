@@ -35,7 +35,6 @@ public class UrlImageGetter implements Html.ImageGetter {
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .displayer(new FadeInBitmapDisplayer(300))
                 .build();
-
         ImageLoader.getInstance().loadImage(source, options, new SimpleImageLoadingListener() {
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {

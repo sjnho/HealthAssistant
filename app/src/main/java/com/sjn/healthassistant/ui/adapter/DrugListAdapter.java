@@ -1,5 +1,6 @@
 package com.sjn.healthassistant.ui.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,8 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.ViewHo
 
 
     private List<Drug> mDrugs;
+
+    private Context mContext;
 
     public DrugListAdapter() {
         mDrugs = new ArrayList<>();
@@ -55,9 +58,13 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Drug drug = mDrugs.get(position);
+        if (holder.mDrugImage.getTag() != null && holder.mDrugImage.getTag().equals(drug.getImg())) {
+            return;
+        }
         ImageLoadUtil.loadImageCacheDisk(drug.getImg(), holder.mDrugImage);
         holder.mDrugDescription.setText(drug.getDescription());
         holder.mDrugName.setText(drug.getName());
+        holder.mDrugImage.setTag(drug.getImg());
     }
 
     @Override

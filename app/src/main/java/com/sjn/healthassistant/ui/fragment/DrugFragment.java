@@ -1,6 +1,5 @@
 package com.sjn.healthassistant.ui.fragment;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.ui.activity.DrugSearchActivity;
+import com.sjn.healthassistant.ui.activity.ZbarScanActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -44,5 +44,21 @@ public class DrugFragment extends Fragment {
         Intent intent = new Intent(getActivity(), DrugSearchActivity.class);
         startActivity(intent);
         getActivity().overridePendingTransition(0, 0);
+    }
+
+    @OnClick(R.id.scan_code)
+    public void scanCode() {
+        Intent intent = new Intent(getActivity(), ZbarScanActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.collection)
+    public void collect() {
+
+    }
+
+    @OnClick(R.id.remind)
+    public void drugRemind() {
+
     }
 }

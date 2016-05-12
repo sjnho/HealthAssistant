@@ -82,8 +82,11 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
         mPresenter.bindView(this);
         mPresenter.pullDown();
         waitDialog = new WaitDialog();
-        waitDialog.show(getFragmentManager(), "wait");
+        if(getUserVisibleHint()){
+            waitDialog.show(getFragmentManager(), "wait");
+        }
     }
+
 
     @Override
     public void onDestroyView() {

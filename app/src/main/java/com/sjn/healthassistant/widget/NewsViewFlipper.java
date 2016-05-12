@@ -46,6 +46,7 @@ public class NewsViewFlipper extends ViewFlipper implements NestedScrollingChild
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 xDown = event.getRawX();
+                LogUtil.d("xdown" + xDown);
                 startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL);
                 getParent().requestDisallowInterceptTouchEvent(true);
                 stopFlipping();
@@ -55,14 +56,20 @@ public class NewsViewFlipper extends ViewFlipper implements NestedScrollingChild
                 break;
             case MotionEvent.ACTION_UP:
                 float dx = xMove - xDown;
+                LogUtil.d("xMove" + xMove);
                 LogUtil.d("dx" + dx);
-                if (dx > ScreenUtil.dp2px(getContext(), 100)) {
-                    showPrevious();
-                } else if (dx < -ScreenUtil.dp2px(getContext(), 100)) {
-                    showNext();
-                } else if (dx == 0) {
+                if (xMove == 0) {
                     LogUtil.d("item click触发");
                     onItemClickListener.onClick(getDisplayedChild());
+                } else {
+                    if (dx > ScreenUtil.dp2px(getContext(), 100)) {
+                        showPrevious();
+                    } else if (dx < -ScreenUtil.dp2px(getContext(), 100)) {
+                        showNext();
+                    } else if (dx == 0) {
+                        LogUtil.d("item click触发");
+                        onItemClickListener.onClick(getDisplayedChild());
+                    }
                 }
                 stopNestedScroll();
                 startFlipping();

@@ -1,10 +1,8 @@
 package com.sjn.healthassistant.ui.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
-import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -17,7 +15,7 @@ import com.sjn.healthassistant.pojo.HealthNews;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -37,15 +35,7 @@ public class NewsActivity extends AppCompatActivity {
 
     private void initViews() {
         Slidr.attach(this);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setTitle("");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        setUpToolbar();
         parseIntent();
     }
 

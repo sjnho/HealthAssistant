@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.pojo.DrugLikeRecord;
 import com.sjn.healthassistant.util.DrugStringFormat;
 import com.sjn.healthassistant.util.ImageLoadUtil;
-import com.sjn.healthassistant.util.RealmGson;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,7 +24,7 @@ import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
-public class DrugDetailActivity extends AppCompatActivity {
+public class DrugDetailActivity extends BaseActivity {
 
 
     @Bind(R.id.image)
@@ -56,14 +54,7 @@ public class DrugDetailActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+       setUpToolbar();
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

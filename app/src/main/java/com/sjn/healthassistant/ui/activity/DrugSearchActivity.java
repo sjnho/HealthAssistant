@@ -2,13 +2,9 @@ package com.sjn.healthassistant.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -19,7 +15,6 @@ import android.widget.TextView;
 
 import com.cjj.OnLoadMoreListener;
 import com.cjj.RecyclerViewWithFooter;
-import com.google.gson.Gson;
 import com.r0adkll.slidr.Slidr;
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
@@ -28,7 +23,6 @@ import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.presenter.DrugSearchPresenter;
 import com.sjn.healthassistant.ui.adapter.DrugListAdapter;
-import com.sjn.healthassistant.util.RealmGson;
 import com.sjn.healthassistant.widget.WaitDialog;
 
 
@@ -39,10 +33,8 @@ import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnTextChanged;
 
-public class DrugSearchActivity extends AppCompatActivity implements ListContract.View<Drug> {
+public class DrugSearchActivity extends BaseActivity implements ListContract.View<Drug> {
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
     @Bind(R.id.recyclerView)
     RecyclerViewWithFooter mRecyclerView;
     @Bind(R.id.edit_text)
@@ -75,15 +67,8 @@ public class DrugSearchActivity extends AppCompatActivity implements ListContrac
         mWaitDialog = new WaitDialog();
         mPresenter = new DrugSearchPresenter();
         mPresenter.bindView(this);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setTitle("");
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        setUpToolbar();
+
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

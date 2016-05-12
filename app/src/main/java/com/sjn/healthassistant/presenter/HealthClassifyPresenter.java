@@ -50,7 +50,7 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
 
     @Override
     public void pullDown() {
-        addSubscription(healthModel.getHealthLore(mHealthClassify.getId(), mSettingPage == 0 ? 1 : mSettingPage - 1)
+        addSubscription(healthModel.getHealthLore(mHealthClassify.getId(), mSettingPage <= 1 ? 1 : mSettingPage - 1)
             .compose(this.<DataWrapper<List<HealthLore>>>applySchedulers())
             .subscribe(new Action1<DataWrapper<List<HealthLore>>>() {
                 @Override
@@ -74,7 +74,6 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
             .subscribe(new Action1<DataWrapper<List<HealthLore>>>() {
                 @Override
                 public void call(DataWrapper<List<HealthLore>> listDataWrapper) {
-                    mCurrentPage++;
                     mView.onPullUp(listDataWrapper.getTngou());
                 }
             }, new Action1<Throwable>() {
@@ -91,6 +90,7 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
             return;
         }
         mSettingPage = page;
+        mCurrentPage = page;
         addSubscription(healthModel.getHealthLore(mHealthClassify.getId(), mSettingPage)
             .compose(this.<DataWrapper<List<HealthLore>>>applySchedulers())
             .subscribe(new Action1<DataWrapper<List<HealthLore>>>() {
@@ -107,4 +107,7 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
             }));
     }
 
+    public void nextPage() {
+        mCurrentPage = mCurrentPage + 1;
+    }
 }

@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mainPagerAdapter.addFragment(drugFragment,"用药");
         mainPagerAdapter.addFragment(diseaseFragment,"病状");
         viewpager.setAdapter(mainPagerAdapter);
+        viewpager.setOffscreenPageLimit(2);
         tabs.setupWithViewPager(viewpager);
     }
 }

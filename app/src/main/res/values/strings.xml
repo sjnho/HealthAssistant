@@ -7,4 +7,7 @@
     <string name="ok">确定</string>
     <string name="transition_reveal">transitionReveal</string>
     <string name="search">药品搜索</string>
+    <string name="drug_collection">药品收藏</string>
+    <string name="drug_remind">用药提醒</string>
+    <string name="scan_code">扫描条形码</string>
 </resources>
