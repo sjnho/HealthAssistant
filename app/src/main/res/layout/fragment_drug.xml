@@ -19,6 +19,7 @@
 
             <Button
                 android:id="@+id/collection"
+                android:drawableLeft="@drawable/ic_favorite"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
@@ -33,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:gravity="center"
+                android:drawableLeft="@drawable/ic_alarm"
                 android:text="@string/drug_remind"
                 android:textColor="@color/primary_text"
                 android:textSize="16sp"/>

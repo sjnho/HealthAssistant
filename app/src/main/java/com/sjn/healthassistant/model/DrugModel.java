@@ -23,7 +23,9 @@ public class DrugModel extends BaseModel {
         return mApi.search("drug", keyword, page).concatMap(new Func1<DataWrapper<List<Drug>>, Observable<? extends List<Drug>>>() {
             @Override
             public Observable<? extends List<Drug>> call(DataWrapper<List<Drug>> listDataWrapper) {
+                Realm.getDefaultInstance().beginTransaction();
                 Realm.getDefaultInstance().copyToRealmOrUpdate(listDataWrapper.getTngou());
+                Realm.getDefaultInstance().commitTransaction();
                 return transData(listDataWrapper);
             }
         });

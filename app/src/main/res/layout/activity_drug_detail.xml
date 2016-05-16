@@ -64,16 +64,45 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        android:src="@drawable/ic_favorite_border"
-        app:layout_behavior="com.sjn.healthassistant.common.FabBehavior"
-        app:elevation="5dp"
-        app:fabSize="normal"
-        app:layout_anchor="@id/scroll"
-        app:layout_anchorGravity="bottom|right|end"
-        />
+    <com.github.clans.fab.FloatingActionMenu
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        app:menu_colorNormal="@color/accent">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_favorite_border_white"
+            app:fab_colorPressed="@color/primary_dark"
+            app:fab_colorNormal="@color/primary"
+            app:fab_label="加入收藏"
+            app:fab_size="normal"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/add_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_alarm_add"
+            app:fab_colorNormal="@color/primary"
+            app:fab_colorPressed="@color/primary_dark"
+            app:fab_label="设置闹钟"
+            app:fab_size="normal"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+
+    <!--<android.support.design.widget.FloatingActionButton-->
+    <!--android:id="@+id/fab"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="@dimen/activity_horizontal_margin"-->
+    <!--android:src="@drawable/ic_favorite_border_white"-->
+    <!--app:layout_behavior="com.sjn.healthassistant.common.FabBehavior"-->
+    <!--app:elevation="5dp"-->
+    <!--app:fabSize="normal"-->
+    <!--app:layout_anchor="@id/scroll"-->
+    <!--app:layout_anchorGravity="bottom|right|end"-->
+    <!--/>-->
 </android.support.design.widget.CoordinatorLayout>

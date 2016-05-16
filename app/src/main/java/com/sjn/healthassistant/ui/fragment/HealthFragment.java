@@ -82,9 +82,7 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
         mPresenter.bindView(this);
         mPresenter.pullDown();
         waitDialog = new WaitDialog();
-        if(getUserVisibleHint()){
-            waitDialog.show(getFragmentManager(), "wait");
-        }
+        waitDialog.show(getFragmentManager(), "wait");
     }
 
 

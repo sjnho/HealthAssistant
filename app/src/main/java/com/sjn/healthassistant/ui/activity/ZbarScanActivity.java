@@ -5,13 +5,19 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.sjn.healthassistant.R;
+import com.sjn.healthassistant.contarct.DetailContract;
+import com.sjn.healthassistant.pojo.Drug;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import me.dm7.barcodescanner.zbar.BarcodeFormat;
 import me.dm7.barcodescanner.zbar.Result;
 import me.dm7.barcodescanner.zbar.ZBarScannerView;
 
-public class ZbarScanActivity extends BaseActivity implements ZBarScannerView.ResultHandler {
+public class ZbarScanActivity extends BaseActivity implements ZBarScannerView.ResultHandler{
 
 
     @Bind(R.id.content_frame)
@@ -25,6 +31,7 @@ public class ZbarScanActivity extends BaseActivity implements ZBarScannerView.Re
         setContentView(R.layout.activity_zbar_scan);
         ButterKnife.bind(this);
         mZBarScannerView = new ZBarScannerView(this);
+        mZBarScannerView.setFormats(BarcodeFormat.ALL_FORMATS);
         mContentFrame.addView(mZBarScannerView);
         setUpToolbar("扫描条形码");
     }
@@ -46,4 +53,5 @@ public class ZbarScanActivity extends BaseActivity implements ZBarScannerView.Re
     public void handleResult(Result result) {
 
     }
+
 }

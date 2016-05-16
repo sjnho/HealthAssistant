@@ -19,10 +19,11 @@ public class HealthModel extends BaseModel {
     }
 
     public Observable<List<HealthNews>> getHealthNews() {
-        return mApi.newInfos(0).concatMap(new Func1<DataWrapper<List<HealthNews>>, Observable<DataWrapper<List<HealthNews>>>>() {
+        return mApi.newInfos(0, 1).concatMap(new Func1<DataWrapper<List<HealthNews>>, Observable<DataWrapper<List<HealthNews>>>>() {
             @Override
             public Observable<DataWrapper<List<HealthNews>>> call(DataWrapper<List<HealthNews>> listDataWrapper) {
-                return mApi.newInfos(listDataWrapper.getTotal());
+
+                return mApi.newInfos(listDataWrapper.getTotal(), 10);
             }
         }).concatMap(new Func1<DataWrapper<List<HealthNews>>, Observable<? extends List<HealthNews>>>() {
             @Override
@@ -32,8 +33,9 @@ public class HealthModel extends BaseModel {
         });
 
     }
-    public Observable<DataWrapper<List<HealthLore>>> getHealthLore(int id,int page){
-        return mApi.getHealthLore(id,page,10);
+
+    public Observable<DataWrapper<List<HealthLore>>> getHealthLore(int id, int page) {
+        return mApi.getHealthLore(id, page, 10);
     }
 
 }

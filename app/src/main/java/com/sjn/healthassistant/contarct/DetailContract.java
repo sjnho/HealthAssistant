@@ -5,7 +5,6 @@ package com.sjn.healthassistant.contarct;
  */
 public interface DetailContract {
     interface View<T> {
-        void setPresenter(Presenter presenter);
         void onGetDetail(T detail);
     }
 
