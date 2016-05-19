@@ -1,5 +1,6 @@
 package com.sjn.healthassistant.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -15,7 +16,7 @@ import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.pojo.DrugLikeRecord;
-import com.sjn.healthassistant.util.DrugStringFormat;
+import com.sjn.healthassistant.util.DrugStringFormatUtil;
 import com.sjn.healthassistant.util.ImageLoadUtil;
 
 import butterknife.Bind;
@@ -65,7 +66,7 @@ public class DrugDetailActivity extends BaseActivity {
         mDrug = realm.where(Drug.class).equalTo("id", getIntent().getIntExtra(Constants.EXTRA_DRUG_ID, 0)).findFirst();
         collapsingToolbar.setTitle(mDrug.getName());
         ImageLoadUtil.loadImageCacheDisk(mDrug.getImg(), image);
-        String drugString = DrugStringFormat.formatDrug(mDrug.getMessage());
+        String drugString = DrugStringFormatUtil.formatDrug(mDrug.getMessage());
         if (!TextUtils.isEmpty(drugString)) {
             mDrugMessage.setText(drugString);
         }
@@ -127,6 +128,8 @@ public class DrugDetailActivity extends BaseActivity {
                 }
                 break;
             case R.id.add_alarm:
+                Intent intent = new Intent(this, AddAlarmActvivity.class);
+                startActivity(intent);
                 break;
         }
     }

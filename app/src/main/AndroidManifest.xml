@@ -28,15 +28,29 @@
             android:name=".ui.activity.DrugDetailActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.activity.DrugListActivity"
+            android:name=".ui.activity.DrugLikeListActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activity.DrugClassifyListActivity">
+        <activity
+            android:name=".ui.activity.DrugClassifyListActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.activity.HealthClassifyListActivity">
+        <activity
+            android:name=".ui.activity.HealthClassifyListActivity"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ui.activity.DrugSearchActivity">
+        <activity
+            android:name=".ui.activity.DrugSearchActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize">
         </activity>
-        <activity android:name=".ui.activity.ZbarScanActivity">
+        <activity
+            android:name=".ui.activity.ZbarScanActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <receiver android:name=".widget.AlarmReceiver"/>
+
+        <activity android:name=".ui.activity.AddAlarmActvivity">
         </activity>
     </application>
 

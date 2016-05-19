@@ -23,12 +23,14 @@ public interface SjnService {
     @GET("search")
     Observable<DataWrapper<List<Drug>>> search(@Query("name") String name, @Query("keyword") String keyword, @Query("page") int page);
 
+    @GET("drug/code")
+    Observable<Drug> findDrugByCode(@Query("code") String code);
 
     /**
      * 健康信息
      */
     @GET("info/news")
-    Observable<DataWrapper<List<HealthNews>>> newInfos(@Query("id") int id,@Query("rows")int rows);//获取最新的健康资讯
+    Observable<DataWrapper<List<HealthNews>>> newInfos(@Query("id") int id, @Query("rows") int rows);//获取最新的健康资讯
 
     @GET("lore/list")
     Observable<DataWrapper<List<HealthLore>>> getHealthLore(@Query("id") int id, @Query("page") int page, @Query("rows") int rows);//获取健康分类知识

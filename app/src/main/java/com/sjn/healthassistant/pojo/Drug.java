@@ -16,6 +16,15 @@ public class Drug extends RealmObject {
     private String description;
     private String tag; //标签
     private String type;//类型
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
 
     public String getName() {
         return name;

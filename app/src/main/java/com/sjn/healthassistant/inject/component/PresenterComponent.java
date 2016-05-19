@@ -5,6 +5,7 @@ import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.inject.module.PresenterModule;
 import com.sjn.healthassistant.inject.scope.PerPresenter;
 import com.sjn.healthassistant.pojo.HealthClassify;
+import com.sjn.healthassistant.presenter.DrugCodePresenter;
 import com.sjn.healthassistant.presenter.DrugSearchPresenter;
 import com.sjn.healthassistant.presenter.HealthClassifyPresenter;
 import com.sjn.healthassistant.presenter.HealthPresenter;
@@ -23,5 +24,6 @@ public interface PresenterComponent {
 
     void inject(DrugSearchPresenter drugSearchPresenter);
 
+    void inject(DrugCodePresenter drugCodePresenter);
 
 }

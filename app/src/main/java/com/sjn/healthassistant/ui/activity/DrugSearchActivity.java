@@ -1,11 +1,11 @@
 package com.sjn.healthassistant.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,7 +23,6 @@ import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.presenter.DrugSearchPresenter;
 import com.sjn.healthassistant.ui.adapter.DrugListAdapter;
-import com.sjn.healthassistant.widget.WaitDialog;
 
 
 import java.util.List;
@@ -41,9 +40,9 @@ public class DrugSearchActivity extends BaseActivity implements ListContract.Vie
     EditText editText;
     @BindString(R.string.transition_image)
     String transition;
-    private WaitDialog mWaitDialog;
     private DrugListAdapter mAdapter;
     private DrugSearchPresenter mPresenter;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +63,15 @@ public class DrugSearchActivity extends BaseActivity implements ListContract.Vie
 
     private void initViews() {
         Slidr.attach(this);
-        mWaitDialog = new WaitDialog();
         mPresenter = new DrugSearchPresenter();
         mPresenter.bindView(this);
         setUpToolbar();
-
+        mProgressDialog = new ProgressDialog(this);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    mWaitDialog.show(getSupportFragmentManager(), "wait");
+                    mProgressDialog.show();
                     mPresenter.setKeyWord(editText.getText().toString());
                     mPresenter.pullDown();
                 }
@@ -131,7 +129,7 @@ public class DrugSearchActivity extends BaseActivity implements ListContract.Vie
 
     @Override
     public void stopLoading() {
-        mWaitDialog.dismiss();
+        mProgressDialog.dismiss();
     }
 
     @Override

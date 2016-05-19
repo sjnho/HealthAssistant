@@ -3,18 +3,24 @@ package com.sjn.healthassistant.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.sjn.healthassistant.R;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * Created by sjn on 16/4/21.
  */
 public class DiseaseFragment extends Fragment {
+    @Bind(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,5 +37,11 @@ public class DiseaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

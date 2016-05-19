@@ -15,14 +15,15 @@ import com.sjn.healthassistant.R;
 public class BaseActivity extends AppCompatActivity {
     public void setUpToolbar(String title) {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (!TextUtils.isEmpty(title) && toolbar != null) {
+            toolbar.setTitle(title);
+        }
         setSupportActionBar(toolbar);
         final ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
-        if (!TextUtils.isEmpty(title) && toolbar != null) {
-            toolbar.setTitle(title);
-        }
+
     }
 
     public void setUpToolbar() {

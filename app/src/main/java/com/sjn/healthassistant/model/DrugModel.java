@@ -8,6 +8,7 @@ import java.util.List;
 
 import io.realm.Realm;
 import rx.Observable;
+import rx.functions.Action1;
 import rx.functions.Func1;
 
 /**
@@ -29,5 +30,24 @@ public class DrugModel extends BaseModel {
                 return transData(listDataWrapper);
             }
         });
+    }
+
+    public Observable<Drug> findDrugByCode(String code) {
+        final Realm realm = Realm.getDefaultInstance();
+        Drug drug = realm.where(Drug.class).equalTo("drug.code", code).findFirst();
+        if (drug == null) {
+            return mApi.findDrugByCode(code).flatMap(new Func1<Drug, Observable<Drug>>() {
+                @Override
+                public Observable<Drug> call(Drug drug) {
+                    realm.beginTransaction();
+                    realm.copyToRealmOrUpdate(drug);
+                    realm.commitTransaction();
+                    return Observable.just(drug);
+                }
+            });
+
+        } else {
+            return Observable.just(drug);
+        }
     }
 }

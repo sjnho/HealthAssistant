@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sjn.healthassistant.ui.activity.AddAlarmActvivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        >
+
+        <android.support.v4.widget.Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <RadioButton
+            android:id="@+id/single"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/single"
+            />
+
+        <RadioButton
+            android:id="@+id/repeat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/repeat"/>
+    </RadioGroup>
+
+    <RelativeLayout
+        android:id="@+id/pick_date_area"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        >
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:text="@string/date"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/pick_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/date"
+            android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:gravity="center"
+            tools:text="2016年10月10日"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/pick_time_area"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:text="@string/time"
+            android:textColor="@color/primary_text"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/pick_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/time"
+            android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:gravity="center"
+            tools:text="上午10点58分"
+            />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/ensure"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="@string/ensure"/>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.sjn.healthassistant.ui.fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,7 +24,6 @@ import com.sjn.healthassistant.ui.activity.NewsActivity;
 import com.sjn.healthassistant.util.ImageLoadUtil;
 import com.sjn.healthassistant.util.RealmGson;
 import com.sjn.healthassistant.widget.NewsViewFlipper;
-import com.sjn.healthassistant.widget.WaitDialog;
 
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
     LinearLayout mContainer;
     private HealthPresenter mPresenter;
     private List<HealthNews> mHealthInfos;
-    private WaitDialog waitDialog;
+    private ProgressDialog mProgressDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,8 +81,9 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
         mPresenter = new HealthPresenter();
         mPresenter.bindView(this);
         mPresenter.pullDown();
-        waitDialog = new WaitDialog();
-        waitDialog.show(getFragmentManager(), "wait");
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage(getString(R.string.loading_data));
+        mProgressDialog.show();
     }
 
 
@@ -110,7 +111,7 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
                 startActivity(intent);
             }
         });
-        waitDialog.dismiss();
+        mProgressDialog.dismiss();
     }
 
     @Override
