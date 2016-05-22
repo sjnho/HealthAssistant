@@ -102,6 +102,7 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
             }, new Action1<Throwable>() {
                 @Override
                 public void call(Throwable throwable) {
+                    mView.stopLoading();
                     throwable.printStackTrace();
                 }
             }));

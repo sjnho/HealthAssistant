@@ -9,4 +9,5 @@ public interface Constants {
     String EXTRA_DRUG_CLASSIFY = "extraDrugClassify";
     String EXTRA_HEALTH_CLASSIFY = " extraHealthClassify";
     String EXTRA_DRUG_ID = "drug_id";
+    String EXTRA_DEPART_ID="department_id";
 }

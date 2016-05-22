@@ -89,7 +89,6 @@ public class DrugSearchActivity extends BaseActivity implements ListContract.Vie
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setEnd();
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View view, int position, long id) {
@@ -104,27 +103,29 @@ public class DrugSearchActivity extends BaseActivity implements ListContract.Vie
 
     @Override
     public void onPullDown(List<Drug> data) {
-
-        mAdapter.getDrugs().addAll(0, data);
-        mAdapter.notifyDataSetChanged();
-        if (data.size() < 1) {
+        if (mAdapter.getDrugs().size() < 1) {
             mRecyclerView.setEmpty();
-        } else if (data.size() < 20) {
+        }
+        if (data.size() < 10) {
             mRecyclerView.setEnd();
         } else {
             mRecyclerView.setLoad();
         }
+        mAdapter.getDrugs().addAll(0, data);
+        mAdapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void onPullUp(List<Drug> data) {
-        mAdapter.getDrugs().addAll(data);
-        mAdapter.notifyDataSetChanged();
-        if (data.size() < 20) {
+        if (data.size() < 10) {
             mRecyclerView.setEnd();
         } else {
             mRecyclerView.setLoad();
         }
+        mAdapter.getDrugs().addAll(data);
+        mAdapter.notifyDataSetChanged();
+
     }
 
     @Override

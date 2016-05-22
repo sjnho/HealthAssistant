@@ -7,31 +7,47 @@ import io.realm.annotations.PrimaryKey;
  * Created by sjn on 16/4/26.
  */
 public class Drug extends RealmObject {
+
     @PrimaryKey
-    private int id;
-    private String name;//名称
-    private String img;//图片
-    private String message;//内容
-    private String keywords;
-    private String description;
-    private String tag; //标签
-    private String type;//类型
-    private String code;
+    private String id;
+    private String blfy;//不良反应
+    private String drugName;//药品名称
+    private String img;//图片地址
+    private String jj;//禁忌
+    private String manu;//生产企业
+    private String pzwh;//批准文号
+    private String syz;//适应症
+    private String type;//药品类别
+    private String yfyl;//用法用量
+    private String ywxhzy;//药物互相作用
+    private String zc;//贮藏
+    private String zycf;//主要成分
+    private String zysx;//注意事项
+    private String zzjb;//主治疾病
 
-    public String getCode() {
-        return code;
+    public String getBlfy() {
+        return blfy;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setBlfy(String blfy) {
+        this.blfy = blfy;
     }
 
-    public String getName() {
-        return name;
+    public String getDrugName() {
+        return drugName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDrugName(String drugName) {
+        this.drugName = drugName;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getImg() {
@@ -42,38 +58,36 @@ public class Drug extends RealmObject {
         this.img = img;
     }
 
-    public String getMessage() {
-        return message;
+    public String getJj() {
+        return jj;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setJj(String jj) {
+        this.jj = jj;
     }
 
-
-    public String getKeywords() {
-        return keywords;
+    public String getManu() {
+        return manu;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
+    public void setManu(String manu) {
+        this.manu = manu;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPzwh() {
+        return pzwh;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setPzwh(String pzwh) {
+        this.pzwh = pzwh;
     }
 
-
-    public String getTag() {
-        return tag;
+    public String getSyz() {
+        return syz;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setSyz(String syz) {
+        this.syz = syz;
     }
 
     public String getType() {
@@ -84,11 +98,52 @@ public class Drug extends RealmObject {
         this.type = type;
     }
 
-    public int getId() {
-        return id;
+    public String getYfyl() {
+        return yfyl;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setYfyl(String yfyl) {
+        this.yfyl = yfyl;
+    }
+
+    public String getYwxhzy() {
+        return ywxhzy;
+    }
+
+    public void setYwxhzy(String ywxhzy) {
+        this.ywxhzy = ywxhzy;
+    }
+
+
+    public String getZc() {
+        return zc;
+    }
+
+    public void setZc(String zc) {
+        this.zc = zc;
+    }
+
+    public String getZycf() {
+        return zycf;
+    }
+
+    public void setZycf(String zycf) {
+        this.zycf = zycf;
+    }
+
+    public String getZysx() {
+        return zysx;
+    }
+
+    public void setZysx(String zysx) {
+        this.zysx = zysx;
+    }
+
+    public String getZzjb() {
+        return zzjb;
+    }
+
+    public void setZzjb(String zzjb) {
+        this.zzjb = zzjb;
     }
 }

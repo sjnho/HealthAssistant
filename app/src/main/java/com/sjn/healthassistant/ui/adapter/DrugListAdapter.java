@@ -58,13 +58,10 @@ public class DrugListAdapter extends RecyclerView.Adapter<DrugListAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Drug drug = mDrugs.get(position);
-        if (holder.mDrugImage.getTag() != null && holder.mDrugImage.getTag().equals(drug.getImg())) {
-            return;
-        }
-        ImageLoadUtil.loadImageCacheDisk(drug.getImg(), holder.mDrugImage);
-        holder.mDrugDescription.setText(drug.getDescription());
-        holder.mDrugName.setText(drug.getName());
-        holder.mDrugImage.setTag(drug.getImg());
+        ImageLoadUtil.loadDrug(drug.getImg(), holder.mDrugImage);
+        String description = "适应症:"+drug.getSyz()+"主治疾病"+drug.getZzjb();
+        holder.mDrugDescription.setText(description);
+        holder.mDrugName.setText(drug.getDrugName());
     }
 
     @Override

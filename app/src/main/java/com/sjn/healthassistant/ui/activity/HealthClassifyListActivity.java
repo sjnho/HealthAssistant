@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +17,7 @@ import com.cjj.RecyclerViewWithFooter;
 import com.r0adkll.slidr.Slidr;
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
+import com.sjn.healthassistant.common.SpacesItemDecoration;
 import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.pojo.HealthClassify;
 import com.sjn.healthassistant.pojo.HealthLore;
@@ -46,7 +47,7 @@ public class HealthClassifyListActivity extends BaseActivity implements ListCont
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_health_classify_list);
+        setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
         parseIntent();
         initViews();
@@ -90,8 +91,9 @@ public class HealthClassifyListActivity extends BaseActivity implements ListCont
 
     private void initViews() {
         mHealthLoreAdapter = new HealthLoreAdapter();
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
         mRecyclerView.setAdapter(mHealthLoreAdapter);
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(5));
         Slidr.attach(this);
         mSwipeRefreshLayout.setRefreshing(true);
         mRecyclerView.setEnd();
@@ -128,7 +130,7 @@ public class HealthClassifyListActivity extends BaseActivity implements ListCont
     @Override
     public void onPullDown(List<HealthLore> data) {
         if (mHealthLoreAdapter.getData().size() != 0 && mHealthLoreAdapter.getData().get(0).getId() == data.get(0).getId()) {
-            Toast.makeText(HealthClassifyListActivity.this, "数据是最新的啦!", Toast.LENGTH_SHORT).show();
+            showToast("数据是最新的啦!");
         } else {
             mHealthLoreAdapter.getData().addAll(0, data);
             mHealthLoreAdapter.notifyDataSetChanged();
@@ -139,7 +141,7 @@ public class HealthClassifyListActivity extends BaseActivity implements ListCont
     @Override
     public void onPullUp(List<HealthLore> data) {
         if (mHealthLoreAdapter.getData().size() != 0 && mHealthLoreAdapter.getData().get(0).getId() == data.get(0).getId()) {
-            Toast.makeText(HealthClassifyListActivity.this, "没有更多数据了!", Toast.LENGTH_SHORT).show();
+            showToast("没有更多数据了!");
         } else {
             mHealthLoreAdapter.getData().addAll(data);
             mHealthLoreAdapter.notifyDataSetChanged();

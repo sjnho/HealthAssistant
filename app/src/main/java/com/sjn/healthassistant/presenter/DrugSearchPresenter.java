@@ -1,5 +1,7 @@
 package com.sjn.healthassistant.presenter;
 
+import android.widget.Toast;
+
 import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.model.DrugModel;
 import com.sjn.healthassistant.pojo.Drug;
@@ -37,7 +39,7 @@ public class DrugSearchPresenter extends BasePresenter<DrugSearchActivity> imple
     @Override
     public void pullDown() {
         addSubscription(
-            mDrugModel.searchDrug(mKeyWord, mCurrentPage)
+            mDrugModel.searchDrug(mKeyWord, mCurrentPage,null)
                 .compose(this.<List<Drug>>applySchedulers())
                 .subscribe(new Action1<List<Drug>>() {
                     @Override
@@ -48,7 +50,8 @@ public class DrugSearchPresenter extends BasePresenter<DrugSearchActivity> imple
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        throwable.printStackTrace();
+                        Toast.makeText(mView, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                        mView.stopLoading();
                     }
                 })
         );
@@ -57,7 +60,7 @@ public class DrugSearchPresenter extends BasePresenter<DrugSearchActivity> imple
     @Override
     public void pullUp() {
         addSubscription(
-            mDrugModel.searchDrug(mKeyWord, mCurrentPage)
+            mDrugModel.searchDrug(mKeyWord, mCurrentPage,null)
                 .compose(this.<List<Drug>>applySchedulers())
                 .subscribe(new Action1<List<Drug>>() {
                     @Override
@@ -67,6 +70,7 @@ public class DrugSearchPresenter extends BasePresenter<DrugSearchActivity> imple
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        mView.stopLoading();
                         throwable.printStackTrace();
                     }
                 })

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.sjn.healthassistant.R;
+import com.sjn.healthassistant.common.Constants;
 
 import java.util.Calendar;
 
@@ -18,17 +19,24 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import io.realm.Realm;
 
 public class AddAlarmActvivity extends BaseActivity {
 
 
     @Bind(R.id.pick_date_area)
     RelativeLayout mPickDateArea;
+    @Bind(R.id.pick_date)
+    TextView sPickDate;
+    @Bind(R.id.pick_time)
+    TextView sPickTime;
     private DatePickerDialog mDatePickerDialog;
 
     private TimePickerDialog mTimePickerDialog;
 
     private boolean isSingle;
+
+    private Realm mRealm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,8 @@ public class AddAlarmActvivity extends BaseActivity {
     }
 
     private void initView() {
+        mRealm = Realm.getDefaultInstance();
+        setUpToolbar("");
         Calendar calendar = Calendar.getInstance();
         mDatePickerDialog = new DatePickerDialog(this, mOnDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         mTimePickerDialog = new TimePickerDialog(this, mOnTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);

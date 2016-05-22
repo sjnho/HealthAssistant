@@ -5,6 +5,7 @@ package com.sjn.healthassistant.contarct;
  */
 public interface DetailContract {
     interface View<T> {
+        void onStopLoading();
         void onGetDetail(T detail);
     }
 

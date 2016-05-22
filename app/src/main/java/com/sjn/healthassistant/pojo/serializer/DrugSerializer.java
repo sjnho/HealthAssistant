@@ -15,13 +15,21 @@ public class DrugSerializer implements JsonSerializer<Drug> {
     @Override
     public JsonElement serialize(Drug src, Type typeOfSrc, JsonSerializationContext context) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("name", src.getName());
+        jsonObject.addProperty("id", src.getId());
+        jsonObject.addProperty("blfy", src.getBlfy());
+        jsonObject.addProperty("drugName", src.getDrugName());
+        jsonObject.addProperty("jj", src.getJj());
+        jsonObject.addProperty("manu", src.getManu());
+        jsonObject.addProperty("pzwh", src.getPzwh());
+        jsonObject.addProperty("syz", src.getSyz());
+        jsonObject.addProperty("ywxhzy", src.getYwxhzy());
+        jsonObject.addProperty("yfyl", src.getYfyl());
         jsonObject.addProperty("img", src.getImg());
-        jsonObject.addProperty("message", src.getMessage());
-        jsonObject.addProperty("keywords", src.getKeywords());
-        jsonObject.addProperty("description", src.getDescription());
-        jsonObject.addProperty("tag", src.getTag());
         jsonObject.addProperty("type", src.getType());
+        jsonObject.addProperty("zc", src.getZc());
+        jsonObject.addProperty("zycf", src.getZycf());
+        jsonObject.addProperty("zysx", src.getZysx());
+        jsonObject.addProperty("zzjb", src.getZzjb());
         return jsonObject;
     }
 }

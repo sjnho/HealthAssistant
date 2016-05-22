@@ -71,10 +71,21 @@ public class ZbarScanActivity extends BaseActivity implements ZBarScannerView.Re
     }
 
     @Override
+    public void onStopLoading() {
+        mProgressDialog.dismiss();
+    }
+
+    @Override
     public void onGetDetail(Drug detail) {
         mProgressDialog.dismiss();
         Intent intent = new Intent(this, DrugDetailActivity.class);
         intent.putExtra(Constants.EXTRA_DRUG_ID, detail.getId());
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDrugCodePresenter.destroy();
     }
 }

@@ -47,13 +47,9 @@ public class HealthLoreAdapter extends RecyclerView.Adapter<HealthLoreAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         HealthLore lore = mData.get(position);
-        if (holder.loreImage.getTag() != null && holder.loreImage.getTag().equals(lore.getImg())) {
-            return;
-        }
-        ImageLoadUtil.loadImageCacheDisk(Constants.IMAGE + lore.getImg(), holder.loreImage);
+        ImageLoadUtil.load16x9Image(Constants.IMAGE + lore.getImg(), holder.loreImage);
         holder.loreTitle.setText(lore.getTitle());
         holder.loreDescription.setText(lore.getDescription());
-        holder.loreImage.setTag(lore.getImg());
     }
 
     @Override

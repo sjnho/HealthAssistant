@@ -63,13 +63,13 @@ public class DrugDetailActivity extends BaseActivity {
 
     private void parseIntentAndSetData() {
         realm = Realm.getDefaultInstance();
-        mDrug = realm.where(Drug.class).equalTo("id", getIntent().getIntExtra(Constants.EXTRA_DRUG_ID, 0)).findFirst();
-        collapsingToolbar.setTitle(mDrug.getName());
-        ImageLoadUtil.loadImageCacheDisk(mDrug.getImg(), image);
-        String drugString = DrugStringFormatUtil.formatDrug(mDrug.getMessage());
-        if (!TextUtils.isEmpty(drugString)) {
-            mDrugMessage.setText(drugString);
-        }
+        mDrug = realm.where(Drug.class).equalTo("id", getIntent().getStringExtra(Constants.EXTRA_DRUG_ID)).findFirst();
+        collapsingToolbar.setTitle(mDrug.getDrugName());
+        ImageLoadUtil.loadDrug(mDrug.getImg(), image);
+//        String drugString = DrugStringFormatUtil.formatDrug(mDrug.getMessage());
+//        if (!TextUtils.isEmpty(drugString)) {
+//            mDrugMessage.setText(drugString);
+//        }
         setFabIcon();
     }
 

@@ -3,6 +3,7 @@ package com.sjn.healthassistant.inject.component;
 
 import android.content.SharedPreferences;
 
+import com.sjn.healthassistant.common.ShowApi;
 import com.sjn.healthassistant.inject.module.AppModule;
 import com.sjn.healthassistant.common.SjnService;
 
@@ -19,4 +20,5 @@ import io.realm.Realm;
 public interface  AppComponent {
     SjnService getService();
     SharedPreferences getSharedPreferences();
+    ShowApi getShowApi();
 }

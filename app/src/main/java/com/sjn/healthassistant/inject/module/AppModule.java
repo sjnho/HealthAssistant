@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 
 import com.sjn.healthassistant.SjnApplication;
+import com.sjn.healthassistant.common.ShowApi;
+import com.sjn.healthassistant.common.ShowApiInterceptor;
 import com.sjn.healthassistant.common.SjnService;
 import com.sjn.healthassistant.util.RealmGson;
 
@@ -58,6 +60,28 @@ public class AppModule {
             .build();
         return retrofit.create(SjnService.class);
     }
+
+    @Provides
+    @Singleton
+    ShowApi provideShowApi() {
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+            .readTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .addInterceptor(new ShowApiInterceptor())
+            .addInterceptor(loggingInterceptor).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl("http://route.showapi.com/")
+            .addConverterFactory(GsonConverterFactory.create(RealmGson.getGson()))
+            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .build();
+        return retrofit.create(ShowApi.class);
+    }
+
 
     @Provides
     @Singleton

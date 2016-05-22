@@ -1,8 +1,10 @@
 package com.sjn.healthassistant.common;
 
+import com.google.gson.JsonElement;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.pojo.HealthLore;
 import com.sjn.healthassistant.pojo.HealthNews;
+import com.sjn.healthassistant.pojo.TnDrug;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ public interface SjnService {
     Observable<DataWrapper<List<Drug>>> search(@Query("name") String name, @Query("keyword") String keyword, @Query("page") int page);
 
     @GET("drug/code")
-    Observable<Drug> findDrugByCode(@Query("code") String code);
+    Observable<TnDrug> findDrugByCode(@Query("code") String code);
 
     /**
      * 健康信息
@@ -38,4 +40,14 @@ public interface SjnService {
     /**
      * 疾病
      */
+    /**
+     * 获取病状列表
+     * @param page
+     * @param rows
+     * @param id
+     * @return
+     */
+
+    @GET("symptom/list")
+    Observable<JsonElement> getSymptom(@Query("page") int page ,@Query("rows") int rows,@Query("id") int id);
 }
