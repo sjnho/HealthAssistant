@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
@@ -6,51 +7,53 @@
                 android:background="@android:color/white"
                 android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_vertical_margin">
-
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_margin="@dimen/activity_vertical_margin">
 
-            <Button
-                android:id="@+id/collection"
-                android:drawableLeft="@drawable/ic_favorite"
-                style="@style/Widget.AppCompat.Button.Borderless"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:gravity="center"
-                android:text="@string/drug_collection"
-                android:textColor="@color/primary_text"
-                android:textSize="16sp"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
 
-            <Button
-                android:id="@+id/remind"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:gravity="center"
-                android:drawableLeft="@drawable/ic_alarm"
-                android:text="@string/drug_remind"
-                android:textColor="@color/primary_text"
-                android:textSize="16sp"/>
+                <Button
+                    android:id="@+id/collection"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableLeft="@drawable/ic_favorite"
+                    android:gravity="center"
+                    android:text="@string/drug_collection"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp"/>
 
-            <Button
-                android:id="@+id/scan_code"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:gravity="center"
-                android:text="@string/scan_code"
-                android:drawableStart="@drawable/ic_scan"
-                android:textColor="@color/primary_text"
-                android:textSize="16sp"/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                <Button
+                    android:id="@+id/remind"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableLeft="@drawable/ic_alarm"
+                    android:gravity="center"
+                    android:text="@string/drug_remind"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp"/>
+
+                <Button
+                    android:id="@+id/scan_code"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawableStart="@drawable/ic_scan"
+                    android:gravity="center"
+                    android:text="@string/scan_code"
+                    android:textColor="@color/primary_text"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -58,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="100dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/ic_search"
         app:backgroundTint="@color/primary"

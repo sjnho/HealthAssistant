@@ -1,5 +1,6 @@
 package com.sjn.healthassistant.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sjn.healthassistant.R;
+import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.common.ItemClickSupport;
-import com.sjn.healthassistant.pojo.Department;
-import com.sjn.healthassistant.ui.adapter.DepartmentAdapter;
+import com.sjn.healthassistant.pojo.BodyPart;
+import com.sjn.healthassistant.ui.activity.SymptomListActivity;
+import com.sjn.healthassistant.ui.adapter.BodyAdapter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -26,12 +29,8 @@ public class DiseaseFragment extends Fragment {
     RecyclerView mRecyclerView;
 
 
-    private DepartmentAdapter mAdapter;
+    private BodyAdapter mAdapter;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Nullable
     @Override
@@ -45,16 +44,19 @@ public class DiseaseFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Realm realm = Realm.getDefaultInstance();
-        mAdapter = new DepartmentAdapter(realm.where(Department.class).findAll());
+        mAdapter = new BodyAdapter(realm.where(BodyPart.class).findAll());
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         mRecyclerView.setAdapter(mAdapter);
         ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView parent, View view, int position, long id) {
-
+                Intent intent = new Intent(getActivity(), SymptomListActivity.class);
+                intent.putExtra(Constants.EXTRA_BODY_PART_ID,mAdapter.getDatas().get(position).getId());
+                startActivity(intent);
             }
         });
+
     }
 
     @Override

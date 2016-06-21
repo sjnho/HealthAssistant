@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.NumberPicker;
-import android.widget.Toast;
 
 import com.cjj.OnLoadMoreListener;
 import com.cjj.RecyclerViewWithFooter;
@@ -47,7 +46,7 @@ public class HealthClassifyListActivity extends BaseActivity implements ListCont
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_refresh_list);
         ButterKnife.bind(this);
         parseIntent();
         initViews();
@@ -96,7 +95,6 @@ public class HealthClassifyListActivity extends BaseActivity implements ListCont
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(5));
         Slidr.attach(this);
         mSwipeRefreshLayout.setRefreshing(true);
-        mRecyclerView.setEnd();
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -151,5 +149,11 @@ public class HealthClassifyListActivity extends BaseActivity implements ListCont
     @Override
     public void stopLoading() {
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.destroy();
     }
 }

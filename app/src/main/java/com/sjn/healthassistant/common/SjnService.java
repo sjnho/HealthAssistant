@@ -48,6 +48,6 @@ public interface SjnService {
      * @return
      */
 
-    @GET("symptom/list")
+    @GET("symptom/place")
     Observable<JsonElement> getSymptom(@Query("page") int page ,@Query("rows") int rows,@Query("id") int id);
 }

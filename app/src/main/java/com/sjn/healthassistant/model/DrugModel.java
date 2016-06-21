@@ -24,24 +24,28 @@ public class DrugModel extends BaseModel {
         super(service);
     }
 
-    public Observable<List<Drug>> searchDrug(String keyword, int page, String manu) {
-        return SjnApplication.getAppComponent().getShowApi().searchDrug(keyword, page, 10, manu).concatMap(new Func1<JsonElement, Observable<? extends List<Drug>>>() {
-            @Override
-            public Observable<? extends List<Drug>> call(JsonElement jsonElement) {
-                JsonObject body = jsonElement.getAsJsonObject().get("showapi_res_body").getAsJsonObject();
 
-                if (body.get("ret_code").getAsInt() == 0) {
-                    List<Drug> drugs = RealmGson.getGson().fromJson(body.get("drugList"), new TypeToken<List<Drug>>() {
-                    }.getType());
-                    Realm.getDefaultInstance().beginTransaction();
-                    Realm.getDefaultInstance().copyToRealmOrUpdate(drugs);
-                    Realm.getDefaultInstance().commitTransaction();
-                    return Observable.just(drugs);
-                } else {
-                    return Observable.error(new Throwable(body.get("msg").getAsString()));
-                }
-            }
-        });
+    public Observable<List<Drug>> searchDrug(String keyword, int page, String manu) {
+        return SjnApplication
+                .getAppComponent()
+                .getShowApi()
+                .searchDrug(keyword, page, 10, manu)
+                .concatMap(new Func1<JsonElement, Observable<? extends List<Drug>>>() {
+                    @Override
+                    public Observable<? extends List<Drug>> call(JsonElement jsonElement) {
+                        JsonObject body = jsonElement.getAsJsonObject().get("showapi_res_body").getAsJsonObject();
+                        if (body.get("ret_code").getAsInt() == 0) {
+                            List<Drug> drugs = RealmGson.getGson().fromJson(body.get("drugList"),
+                                new TypeToken<List<Drug>>() {}.getType());
+                            Realm.getDefaultInstance().beginTransaction();
+                            Realm.getDefaultInstance().copyToRealmOrUpdate(drugs);
+                            Realm.getDefaultInstance().commitTransaction();
+                            return Observable.just(drugs);
+                        } else {
+                            return Observable.error(new Throwable(body.get("msg").getAsString()));
+                        }
+                    }
+                });
     }
 
     public Observable<Drug> findDrugByCode(String code) {

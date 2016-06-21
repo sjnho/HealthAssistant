@@ -7,7 +7,7 @@ import com.sjn.healthassistant.presenter.DrugCodePresenter;
 import com.sjn.healthassistant.presenter.DrugSearchPresenter;
 import com.sjn.healthassistant.presenter.HealthClassifyPresenter;
 import com.sjn.healthassistant.presenter.HealthPresenter;
-import com.sjn.healthassistant.presenter.SyptomListPresenter;
+import com.sjn.healthassistant.presenter.SymptomListPresenter;
 
 import dagger.Component;
 
@@ -25,6 +25,6 @@ public interface PresenterComponent {
 
     void inject(DrugCodePresenter drugCodePresenter);
 
-    void inject(SyptomListPresenter systomListPresenter);
+    void inject(SymptomListPresenter systomListPresenter);
 
 }

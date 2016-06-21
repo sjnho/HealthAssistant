@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.ui.activity.DrugLikeListActivity;
 import com.sjn.healthassistant.ui.activity.DrugSearchActivity;
+import com.sjn.healthassistant.ui.activity.RemindListActifity;
 import com.sjn.healthassistant.ui.activity.ZbarScanActivity;
 
 import butterknife.ButterKnife;
@@ -61,6 +62,8 @@ public class DrugFragment extends Fragment {
 
     @OnClick(R.id.remind)
     public void drugRemind() {
+        Intent intent = new Intent(getActivity(), RemindListActifity.class);
+        startActivity(intent);
 
     }
 }

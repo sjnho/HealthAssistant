@@ -43,40 +43,39 @@ public class NewsViewFlipper extends ViewFlipper implements NestedScrollingChild
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         final int action = MotionEventCompat.getActionMasked(event);
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                xDown = event.getRawX();
-                LogUtil.d("xdown" + xDown);
-                startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL);
-                getParent().requestDisallowInterceptTouchEvent(true);
-                stopFlipping();
-                break;
-            case MotionEvent.ACTION_MOVE:
-                xMove = event.getRawX();
-                break;
-            case MotionEvent.ACTION_UP:
-                float dx = xMove - xDown;
-                LogUtil.d("xMove" + xMove);
-                LogUtil.d("dx" + dx);
-                if (xMove == 0) {
-                    LogUtil.d("item click触发");
-                    onItemClickListener.onClick(getDisplayedChild());
-                } else {
-                    if (dx > ScreenUtil.dp2px(getContext(), 100)) {
-                        showPrevious();
-                    } else if (dx < -ScreenUtil.dp2px(getContext(), 100)) {
-                        showNext();
-                    } else if (dx == 0) {
-                        LogUtil.d("item click触发");
+        if (onItemClickListener != null) {
+
+            switch (action) {
+                case MotionEvent.ACTION_DOWN:
+                    xDown = event.getRawX();
+                    startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL);
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                    stopFlipping();
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    xMove = event.getRawX();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    float dx = xMove - xDown;
+                    if (xMove == 0) {
                         onItemClickListener.onClick(getDisplayedChild());
+                    } else {
+                        if (dx > ScreenUtil.dp2px(getContext(), 100)) {
+                            showPrevious();
+                        } else if (dx < -ScreenUtil.dp2px(getContext(), 100)) {
+                            showNext();
+                        } else if (dx == 0) {
+                            onItemClickListener.onClick(getDisplayedChild());
+                        }
                     }
-                }
-                stopNestedScroll();
-                startFlipping();
-                xDown = 0;
-                xMove = 0;
-                break;
+                    stopNestedScroll();
+                    startFlipping();
+                    xDown = 0;
+                    xMove = 0;
+                    break;
+            }
         }
+
         return true;
     }
 

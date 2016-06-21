@@ -1,9 +1,12 @@
 package com.sjn.healthassistant.common;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.sjn.healthassistant.util.ScreenUtil;
 
 /**
  * Created by sjn on 16/5/21.
@@ -14,6 +17,11 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     public SpacesItemDecoration(int space) {
         this.space = space;
     }
+
+    public SpacesItemDecoration(int dp, Context context) {
+        space = ScreenUtil.dp2px(context, dp);
+    }
+
 
     @Override
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {

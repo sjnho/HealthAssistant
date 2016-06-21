@@ -16,7 +16,7 @@ import com.sjn.healthassistant.R;
 import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.pojo.DrugLikeRecord;
-import com.sjn.healthassistant.util.DrugStringFormatUtil;
+import com.sjn.healthassistant.util.StringFormatUtil;
 import com.sjn.healthassistant.util.ImageLoadUtil;
 
 import butterknife.Bind;
@@ -66,7 +66,11 @@ public class DrugDetailActivity extends BaseActivity {
         mDrug = realm.where(Drug.class).equalTo("id", getIntent().getStringExtra(Constants.EXTRA_DRUG_ID)).findFirst();
         collapsingToolbar.setTitle(mDrug.getDrugName());
         ImageLoadUtil.loadDrug(mDrug.getImg(), image);
-//        String drugString = DrugStringFormatUtil.formatDrug(mDrug.getMessage());
+        String drugString = StringFormatUtil.formatDrug(mDrug);
+        if (!TextUtils.isEmpty(drugString)) {
+            mDrugMessage.setText(drugString);
+        }
+//        String drugString = StringFormatUtil.formatDrug(mDrug.getMessage());
 //        if (!TextUtils.isEmpty(drugString)) {
 //            mDrugMessage.setText(drugString);
 //        }
@@ -80,7 +84,7 @@ public class DrugDetailActivity extends BaseActivity {
         realm.commitTransaction();
         mCollect.setImageResource(R.drawable.ic_favorite_border_white);
         mCollect.setLabelText("加入收藏");
-        isFavorite = true;
+        isFavorite = false;
         Toast.makeText(DrugDetailActivity.this, "取消收藏成功", Toast.LENGTH_SHORT).show();
     }
 
@@ -93,7 +97,7 @@ public class DrugDetailActivity extends BaseActivity {
         realm.commitTransaction();
         mCollect.setImageResource(R.drawable.ic_favorite_white);
         mCollect.setLabelText("取消收藏");
-        isFavorite = false;
+        isFavorite = true;
         Toast.makeText(DrugDetailActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
     }
 
@@ -129,6 +133,7 @@ public class DrugDetailActivity extends BaseActivity {
                 break;
             case R.id.add_alarm:
                 Intent intent = new Intent(this, AddAlarmActvivity.class);
+                intent.putExtra(Constants.EXTRA_DRUG_ID,mDrug.getId());
                 startActivity(intent);
                 break;
         }

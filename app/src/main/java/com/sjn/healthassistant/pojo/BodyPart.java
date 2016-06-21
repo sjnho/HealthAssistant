@@ -3,17 +3,14 @@ package com.sjn.healthassistant.pojo;
 import io.realm.RealmObject;
 
 /**
- * Created by sjn on 16/5/19.
+ * Created by sjn on 16/6/13.
  */
-public class Department extends RealmObject{
+public class BodyPart extends RealmObject {
 
-    /**
-     * id : 1
-     * name : 内科
-     */
+    private String name;
 
     private int id;
-    private String name;
+
 
     public int getId() {
         return id;

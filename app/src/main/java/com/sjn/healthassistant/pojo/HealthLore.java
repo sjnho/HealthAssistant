@@ -19,12 +19,10 @@ public class HealthLore {
 
     private int count;
     private String description;
-    private int fcount;
     private int id;
     private String img;
     private String keywords;
     private int loreclass;
-    private int rcount;
     private long time;
     private String title;
 
@@ -44,13 +42,7 @@ public class HealthLore {
         this.description = description;
     }
 
-    public int getFcount() {
-        return fcount;
-    }
 
-    public void setFcount(int fcount) {
-        this.fcount = fcount;
-    }
 
     public int getId() {
         return id;
@@ -84,13 +76,7 @@ public class HealthLore {
         this.loreclass = loreclass;
     }
 
-    public int getRcount() {
-        return rcount;
-    }
 
-    public void setRcount(int rcount) {
-        this.rcount = rcount;
-    }
 
     public long getTime() {
         return time;

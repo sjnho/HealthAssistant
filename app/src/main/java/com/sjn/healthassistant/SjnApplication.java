@@ -7,7 +7,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.sjn.healthassistant.inject.component.AppComponent;
 import com.sjn.healthassistant.inject.component.DaggerAppComponent;
 import com.sjn.healthassistant.inject.module.AppModule;
-import com.sjn.healthassistant.pojo.Department;
+import com.sjn.healthassistant.pojo.BodyPart;
 import com.sjn.healthassistant.pojo.Drug;
 import com.sjn.healthassistant.pojo.DrugClassify;
 import com.sjn.healthassistant.pojo.HealthClassify;
@@ -62,10 +62,10 @@ public class SjnApplication extends Application {
             realm.createAllFromJson(HealthClassify.class, json);
             realm.commitTransaction();
         }
-        if (realm.where(Department.class).findAll().size() == 0) {
-            String json = "[{id:1,name: \"内科\"},{id: 10,name: \"外科\"},{id: 23,name: \"手外科\"},{id: 25,name: \"妇产科\"},{id: 28,name: \"五官科\"},{id: 32,name: \"皮肤性病\"},{id: 35,name: \"中西医结合科\"},{id: 37,name: \"肝病\"},{id: 39,name: \"精神心理科\"},{id: 42,name: \"儿科\"},{id: 44,name: \"男科\"},{id: 46,name: \"生殖健康\"},{id: 50,name: \"传染科\"},{id: 52,name: \"老年科\"},{id: 54,name: \"体检保健科\"},{id: 62,name: \"营养科\"},{id: 56,name: \"成瘾医学科\"}]";
+        if (realm.where(BodyPart.class).findAll().size() == 0) {
+            String json = "[{\"id\":1,\"name\":\"头部\"},{\"id\":9,\"name\":\"颈部\"},{\"id\":12,\"name\":\"胸部\"},{\"id\":19,\"name\":\"腹部\"},{\"id\":29,\"name\":\"腰部\"},{\"id\":33,\"name\":\"臀部\"},{\"id\":35,\"name\":\"上肢\"},{\"id\":41,\"name\":\"下肢\"},{\"id\":46,\"name\":\"骨\"},{\"id\":57,\"name\":\"男性生殖\"},{\"id\":63,\"name\":\"女性生殖\"},{\"id\":69,\"name\":\"盆腔\"},{\"id\":81,\"name\":\"心理\"},{\"id\":83,\"name\":\"背部\"}]";
             realm.beginTransaction();
-            realm.createAllFromJson(Department.class, json);
+            realm.createAllFromJson(BodyPart.class, json);
             realm.commitTransaction();
         }
     }

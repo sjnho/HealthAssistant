@@ -78,6 +78,7 @@ public class DrugSearchActivity extends BaseActivity implements ListContract.Vie
                 return true;
             }
         });
+        mRecyclerView.setEnd();
         mRecyclerView.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
@@ -98,7 +99,13 @@ public class DrugSearchActivity extends BaseActivity implements ListContract.Vie
                 startActivity(intent, options.toBundle());
             }
         });
-
+        String key = getIntent().getStringExtra(Constants.EXTRA_DRUGNAME);
+        if(!TextUtils.isEmpty(key)){
+            editText.setText(key);
+            mProgressDialog.show();
+            mPresenter.setKeyWord(editText.getText().toString());
+            mPresenter.pullDown();
+        }
     }
 
     @Override

@@ -7,23 +7,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.sjn.healthassistant.R;
-import com.sjn.healthassistant.pojo.Department;
+import com.sjn.healthassistant.pojo.BodyPart;
 
 import java.util.List;
 
 /**
  * Created by sjn on 16/5/19.
  */
-public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.ViewHolder> {
+public class BodyAdapter extends RecyclerView.Adapter<BodyAdapter.ViewHolder> {
 
 
-    public List<Department> getDatas() {
+    public List<BodyPart> getDatas() {
         return mDatas;
     }
 
-    private List<Department> mDatas;
+    private List<BodyPart> mDatas;
 
-    public DepartmentAdapter(List<Department> datas) {
+    public BodyAdapter(List<BodyPart> datas) {
         mDatas = datas;
     }
 
@@ -38,8 +38,8 @@ public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Department department = mDatas.get(position);
-        holder.mButton.setText(department.getName());
+        BodyPart bodyPart = mDatas.get(position);
+        holder.mButton.setText(bodyPart.getName());
 
     }
 

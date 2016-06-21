@@ -4,6 +4,16 @@ package com.sjn.healthassistant.pojo;
  * Created by sjn on 16/5/19.
  */
 public class Symptom {
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String name;//疾病名称
     private String img;//图片
     private String keywords;

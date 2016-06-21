@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,7 +102,10 @@ public class HealthFragment extends Fragment implements ListContract.View<Health
             ImageView imageView = new ImageView(getContext());
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             ImageLoadUtil.loadImageCacheDisk(Constants.IMAGE + hi.getImg(), imageView);
-            mFlipper.addView(imageView);
+            if (!TextUtils.isEmpty(hi.getMessage())) {
+                mFlipper.addView(imageView);
+            }
+
         }
         mFlipper.setOnItemClickListener(new NewsViewFlipper.onItemClickListener() {
             @Override

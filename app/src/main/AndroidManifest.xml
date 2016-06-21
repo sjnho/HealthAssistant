@@ -31,10 +31,6 @@
             android:name=".ui.activity.DrugLikeListActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ui.activity.DrugClassifyListActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".ui.activity.HealthClassifyListActivity"
             android:screenOrientation="portrait">
         </activity>
@@ -53,6 +49,12 @@
         <activity android:name=".ui.activity.AddAlarmActvivity">
         </activity>
         <activity android:name=".ui.activity.SymptomListActivity">
+        </activity>
+        <activity android:name=".ui.activity.RemindListActifity">
+        </activity>
+        <activity android:name=".ui.activity.RemindDetailActivity">
+        </activity>
+        <activity android:name=".ui.activity.SymptomDetailActivity">
         </activity>
     </application>
 

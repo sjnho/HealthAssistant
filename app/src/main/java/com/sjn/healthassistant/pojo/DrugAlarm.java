@@ -1,6 +1,7 @@
 package com.sjn.healthassistant.pojo;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by sjn on 16/5/17.
@@ -8,11 +9,32 @@ import io.realm.RealmObject;
 public class DrugAlarm extends RealmObject {
 
 
+    @PrimaryKey
+    private int id;
+
+    private int type;
+
     private Drug drug;
 
     private long time;
 
-    private int type;
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getId() {
+
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public long getTime() {
         return time;

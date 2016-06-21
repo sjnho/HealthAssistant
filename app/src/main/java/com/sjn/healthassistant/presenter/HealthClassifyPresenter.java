@@ -1,7 +1,9 @@
 package com.sjn.healthassistant.presenter;
 
+import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.sjn.healthassistant.common.Constants;
 import com.sjn.healthassistant.common.DataWrapper;
 import com.sjn.healthassistant.contarct.ListContract;
 import com.sjn.healthassistant.model.HealthModel;
@@ -24,6 +26,8 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
 
     @Inject
     HealthModel healthModel;
+    @Inject
+    SharedPreferences mSp;
 
     private int mCurrentPage;//当前所在页码
 
@@ -38,13 +42,13 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
 
     public void setHealthClassify(HealthClassify healthClassify) {
         mHealthClassify = healthClassify;
+        mCurrentPage = mSp.getInt(healthClassify.getId() + Constants.SP_HEALTH_PAGE, 1);
     }
 
     private HealthClassify mHealthClassify;
 
     public HealthClassifyPresenter() {
         initPresenterComponent().inject(this);
-        mCurrentPage = 1;
     }
 
 
@@ -91,24 +95,31 @@ public class HealthClassifyPresenter extends BasePresenter<HealthClassifyListAct
         }
         mSettingPage = page;
         mCurrentPage = page;
-        addSubscription(healthModel.getHealthLore(mHealthClassify.getId(), mSettingPage)
-            .compose(this.<DataWrapper<List<HealthLore>>>applySchedulers())
-            .subscribe(new Action1<DataWrapper<List<HealthLore>>>() {
-                @Override
-                public void call(DataWrapper<List<HealthLore>> listDataWrapper) {
-                    mView.onSetPageData(listDataWrapper.getTngou());
-                    mView.stopLoading();
-                }
-            }, new Action1<Throwable>() {
-                @Override
-                public void call(Throwable throwable) {
-                    mView.stopLoading();
-                    throwable.printStackTrace();
-                }
-            }));
+        addSubscription(
+            healthModel.getHealthLore(mHealthClassify.getId(), mSettingPage)
+                .compose(this.<DataWrapper<List<HealthLore>>>applySchedulers())
+                .subscribe(new Action1<DataWrapper<List<HealthLore>>>() {
+                    @Override
+                    public void call(DataWrapper<List<HealthLore>> listDataWrapper) {
+                        mView.onSetPageData(listDataWrapper.getTngou());
+                        mView.stopLoading();
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mView.stopLoading();
+                        throwable.printStackTrace();
+                    }
+                }));
     }
 
     public void nextPage() {
         mCurrentPage = mCurrentPage + 1;
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        mSp.edit().putInt(mHealthClassify.getId() + Constants.SP_HEALTH_PAGE, mCurrentPage).apply();
     }
 }

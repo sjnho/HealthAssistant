@@ -18,11 +18,9 @@
             android:layout_height="@dimen/detail_img_height"
             android:autoStart="true"
             />
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary_text"
-            android:text="@string/health_classify"
-            android:textSize="24sp"/>
+            android:src="@drawable/healthclassify"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
